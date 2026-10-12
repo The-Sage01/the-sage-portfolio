@@ -46,7 +46,7 @@ export default function CustomCursor() {
     <motion.div
       aria-hidden="true"
       className="sage-cursor-glow"
-      style={{ translateX: springX, translateY: springY, opacity: visible ? 1 : 0 }}
+      style={{ x: springX, y: springY, opacity: visible ? 1 : 0 }}
       animate={{ scale: hovering ? 1.7 : 1 }}
       transition={{ scale: { duration: 0.25, ease: 'easeOut' } }}
     />

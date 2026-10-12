@@ -13,7 +13,17 @@ import { useIsCoarsePointer, usePrefersReducedMotion } from './useMediaQuery'
 // the ref *object* (never `.current`) is touched during render. Accepting
 // it as a parameter keeps the ref entirely in the caller's own component,
 // where `ref={myRef}` is always the standard, always-allowed pattern.
-export function useMagnetic(ref, strength = 0.25) {
+//
+// maxOffset hard-caps how far the pull can ever move the element, in
+// pixels, regardless of how big the element is or how close the cursor
+// gets to its edge. Without this, strength * distance-from-center scales
+// with the element's own size — on a wide element like a mode card,
+// strength 0.2 alone could produce ~24px of pull, more than the 20px gap
+// between cards in the grid, so at the edge of one card it could visually
+// overlap its neighbor. The cap keeps the pull proportionally subtle and
+// guarantees it stays well inside the layout's own spacing regardless of
+// element size.
+export function useMagnetic(ref, strength = 0.25, maxOffset = 8) {
   const coarse = useIsCoarsePointer()
   const reducedMotion = usePrefersReducedMotion()
   const disabled = coarse || reducedMotion
@@ -27,12 +37,14 @@ export function useMagnetic(ref, strength = 0.25) {
     return { style: {}, onMouseMove: undefined, onMouseLeave: undefined }
   }
 
+  const clamp = (v) => Math.max(-maxOffset, Math.min(maxOffset, v))
+
   const onMouseMove = (e) => {
     const el = ref.current
     if (!el) return
     const rect = el.getBoundingClientRect()
-    x.set((e.clientX - (rect.left + rect.width / 2)) * strength)
-    y.set((e.clientY - (rect.top + rect.height / 2)) * strength)
+    x.set(clamp((e.clientX - (rect.left + rect.width / 2)) * strength))
+    y.set(clamp((e.clientY - (rect.top + rect.height / 2)) * strength))
   }
 
   const onMouseLeave = () => {
