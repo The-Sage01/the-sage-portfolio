@@ -28,13 +28,12 @@ export const profile = {
     'To create impactful technology and build solutions for Africa and beyond, and to grow this platform into a lasting record of his engineering career and a foundation for future companies.',
 
   // ── Placeholders: fill these in when you are ready ──────────────────────────
-  // 1. Put your photo at  public/images/profile.jpg  then set:  '/images/profile.jpg'
-  photo: null,
-  // 2. Put your CV at  public/cv/Kelvin-T-Muchabaya-CV.pdf  then set that path.
+  photo: '/images/profile.jpg',
+  // Put your CV at  public/cv/Kelvin-T-Muchabaya-CV.pdf  then set that path.
   cv: null,
 
   contact: {
-    email: 'muchabayakelvin@gmail.com', // e.g. 'name@example.com'
+    email: null, // e.g. 'name@example.com'
     phone: null, // e.g. '+263 ...'
     linkedin: null, // full URL
     // Derived from the repository owner in your GitHub URL (OtakuSensei05).

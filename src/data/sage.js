@@ -1,5 +1,5 @@
 // The Sage Mode data — the intellectual side. Interests come from the original
-// site; the archives below are empty, ready for real entries.
+// site; the archives below hold real entries as Kelvin adds them.
 
 export const interests = [
   {
@@ -47,12 +47,16 @@ export const learningMission = [
   'Future technologies',
 ]
 
-// ── Archives — add real entries here. Empty arrays show a tidy empty state. ──
-// book:        { title, author, note }
+// ── Archives — real entries only. Empty arrays show a tidy empty state. ──
+// book:        { title, author, note? }  -- note is optional: why it mattered
 // note:        { title, date: '2026-09-01', summary, href? }
 // experiment:  { title, date, summary, href? }
 export const archives = {
-  books: [],
+  books: [
+    { title: 'The Art of War', author: 'Sun Tzu' },
+    { title: 'The Art of the Deal', author: 'Donald Trump' },
+    { title: 'Atomic Habits', author: 'James Clear' },
+  ],
   notes: [],
   experiments: [],
 }

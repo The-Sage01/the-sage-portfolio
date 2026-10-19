@@ -71,9 +71,15 @@ function ArchiveColumn({ title, items, empty }) {
       {items.length === 0 ? (
         <p className="mt-3 text-sm text-slate-600">{empty}</p>
       ) : (
-        <ul className="mt-3 space-y-2 text-sm text-slate-300">
+        <ul className="mt-3 space-y-3 text-sm text-slate-300">
           {items.map((item, i) => (
-            <li key={i}>{item.title}</li>
+            <li key={i}>
+              <p>{item.title}</p>
+              {/* author (books) shown as a muted subtitle -- was always in
+                  the data schema but never actually rendered until now */}
+              {item.author && <p className="text-xs text-slate-500">{item.author}</p>}
+              {item.note && <p className="mt-1 text-xs leading-relaxed text-slate-500">{item.note}</p>}
+            </li>
           ))}
         </ul>
       )}
